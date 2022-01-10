@@ -1,0 +1,28 @@
+{
+  "name": "cra-template-hv-uikit",
+  "version": "0.1.0",
+  "keywords": [
+    "react",
+    "create-react-app",
+    "template",
+    "hv-uikit"
+  ],
+  "description": "The HV UIKIT template for Create React App.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dpanda-hv/cra-template-hv-uikit.git"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "files": [
+    "template",
+    "template.json"
+  ],
+  "dependencies": {
+    "shelljs": "^0.8.4"
+  },
+  "scripts": {
+    "start-template": "node ./start-template"
+  }
+}
