@@ -1,0 +1,60 @@
+{
+  "components": {
+    "layout": {
+      "header": {
+        "appName": "HV UI KIT Sample App"
+      }
+    },
+    "dialog": {
+      "confirmation": {
+        "title": "Are you sure?",
+        "content": "This action can't be reverted.",
+        "confirmText": "Proceed",
+        "cancelText": "Cancel"
+      }
+    }
+  },
+  "pages": {
+    "login": {
+      "loginForm": {
+        "title": "Welcome",
+        "username": {
+          "label": "Username",
+          "placeholder": "Enter text"
+        },
+        "password": {
+          "label": "Password",
+          "placeholder": "Enter text"
+        },
+        "remember": "Remember me",
+        "submit": {
+          "logging": "Logging",
+          "login": "Log in"
+        },
+        "forgot": "Forgot your credentials?",
+        "error": "Login error!"
+      },
+      "recoverForm": {
+        "title": "Recover Credentials",
+        "subtitle": "You will receive an email with instructions to recover your credentials",
+        "email": {
+          "label": "Email",
+          "placeholder": "Enter email"
+        },
+        "cancel": "Cancel",
+        "submit": {
+          "recovering": "Recovering",
+          "recover": "Recover"
+        },
+        "success": "Email sent!",
+        "error": "Please enter a valid Email!"
+      }
+    },
+    "home": {
+      "title": "Home"
+    },
+    "notFound": {
+      "title": "Not Found"
+    }
+  }
+}
