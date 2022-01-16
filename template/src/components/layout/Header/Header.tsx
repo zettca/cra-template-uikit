@@ -1,57 +1,65 @@
-import React, { useContext } from "react";
-import { useTranslation } from "react-i18next";
+import React, { useContext, MouseEvent } from "react";
+import { useHistory } from "react-router-dom";
 import { useMediaQuery, useTheme } from "@material-ui/core";
+import { LogOut, Menu, ThemeSwitcher } from "@hv/uikit-react-icons";
 import {
   HvHeader,
   HvHeaderBrand,
   HvHeaderActions,
+  HvHeaderNavigation,
+  NavigationItemProp,
   HvButton,
-  HvTooltip,
-  HvTypography,
 } from "@hv/uikit-react-core";
-import { LogOut, Menu, ThemeSwitcher } from "@hv/uikit-react-icons";
-import history from "lib/utils/history";
-import Logo from "assets/HitachiLogo";
-import ThemeContext from "lib/contexts/ThemeContext";
-import { AuthContext } from "lib/contexts/AuthContext";
-import NavigationContext from "lib/contexts/NavigationContext";
-import { HeaderProps } from "./index";
 
-const Header: React.FC<HeaderProps> = ({ classes }) => {
-  const { t } = useTranslation();
+import HitachiLogo from "assets/HitachiLogo";
+import { ThemeContext } from "lib/context/ThemeContext";
+import { NavigationContext } from "lib/context/NavigationContext";
+import navigation from "lib/navigation";
+
+const { REACT_APP_NAME } = process.env;
+
+const Header: React.FC = () => {
+  const history = useHistory();
   const theme = useTheme();
-  const { isAuthed, logout } = useContext(AuthContext);
 
   const { toggleTheme } = useContext(ThemeContext);
-  const { toggleOpen } = useContext(NavigationContext);
+  const { toggleVerticalOpen, activePath } = useContext(NavigationContext);
 
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
   const isXs = useMediaQuery(theme.breakpoints.only("xs"));
 
-  const handleLogoClick = () => {
-    history.push("/");
+  const handleChange = (
+    event: MouseEvent,
+    selection: NavigationItemProp
+  ): void => {
+    if (selection.path) history.push(selection.path);
   };
 
   return (
     <HvHeader>
       {!isMdUp && (
-        <HvButton icon onClick={toggleOpen}>
-          <Menu />
-        </HvButton>
+        <div>
+          <HvButton category="ghost" icon onClick={toggleVerticalOpen}>
+            <Menu />
+          </HvButton>
+        </div>
       )}
 
       <HvHeaderBrand
-        logo={<Logo width={120} />}
-        className={classes.brand}
-        onClick={handleLogoClick}
-        name={!isXs ? t("components.layout.header.appName") : undefined}
+        logo={<HitachiLogo style={{ width: 72, height: 20 }} />}
+        name={!isXs ? REACT_APP_NAME : undefined}
       />
 
-      <HvHeaderActions>
-        <HvTooltip
-          title={<HvTypography>Change theme</HvTypography>}
-          enterDelay={0}
-        >
+      {isMdUp && (
+        <HvHeaderNavigation
+          data={navigation}
+          selected={activePath?.id}
+          onClick={handleChange}
+        />
+      )}
+
+      {isMdUp && (
+        <HvHeaderActions>
           <HvButton
             icon
             aria-label="Change theme"
@@ -59,15 +67,11 @@ const Header: React.FC<HeaderProps> = ({ classes }) => {
           >
             <ThemeSwitcher />
           </HvButton>
-        </HvTooltip>
-        {isAuthed && isMdUp && (
-          <HvTooltip title={<HvTypography>Logout</HvTypography>} enterDelay={0}>
-            <HvButton icon onClick={() => logout()} aria-label="Logout">
-              <LogOut />
-            </HvButton>
-          </HvTooltip>
-        )}
-      </HvHeaderActions>
+          <HvButton icon onClick={() => {}} aria-label="Logout">
+            <LogOut />
+          </HvButton>
+        </HvHeaderActions>
+      )}
     </HvHeader>
   );
 };

@@ -8,5 +8,3 @@ interface Cookie {
 export const getCookie = (key: string) => jsCookie.get(key);
 
 export const setCookie = ({ key, value }: Cookie) => jsCookie.set(key, value);
-
-export const removeCookie = (key: string) => jsCookie.remove(key);
