@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Projects should match the snapshot 1`] = `
+<div>
+  <div
+    class="makeStyles-content-1"
+  >
+    <main
+      class="MuiContainer-root HvContainer-root makeStyles-container-2"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+        >
+          <h3
+            class="HvTypography-root HvTypography-mTitle"
+          >
+            page.title
+          </h3>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+        >
+          <div
+            class="HvGlobalActions-root"
+          >
+            <div
+              class="HvGlobalActions-wrapper HvGlobalActions-globalSectionArea"
+            >
+              <h2
+                class="HvGlobalActions-name HvTypography-root HvTypography-sectionTitle"
+              >
+                section.title
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+`;

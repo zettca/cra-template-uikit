@@ -1,40 +1,28 @@
-import React from "react";
-import { HvProvider } from "@hv/uikit-react-core";
-import { AuthContext } from "lib/contexts/AuthContext";
-import ThemeContext from "lib/contexts/ThemeContext";
-import { useAuth } from "lib/hooks/useAuth";
-import useTheme from "lib/hooks/useTheme";
-import { setupAxios } from "lib/utils/http";
-import UserContext from "lib/contexts/UserContext";
-import useUser from "lib/hooks/useUser";
+import React, { Suspense } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 
-const GlobalProvider = ({ children }) => {
-  const { theme, toggleTheme } = useTheme();
-  const { isAuthed, authStatus, login, logout, authMessage } = useAuth();
-  const { isAdmin, roles } = useUser(isAuthed);
+import { ThemeProvider } from "lib/context/ThemeContext";
+import { NavigationProvider } from "lib/context/NavigationContext";
+import navigation from "lib/navigation";
 
-  // Configure axios
-  setupAxios(logout);
+const { NODE_ENV, REACT_APP_BASE_PATH } = process.env;
 
-  return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <AuthContext.Provider
-        value={{
-          isAuthed,
-          authStatus,
-          authMessage,
-          login,
-          logout,
-        }}
-      >
-        <HvProvider uiKitTheme={theme}>
-          <UserContext.Provider value={{ isAdmin, roles }}>
-            {children}
-          </UserContext.Provider>
-        </HvProvider>
-      </AuthContext.Provider>
-    </ThemeContext.Provider>
-  );
+const basePath = NODE_ENV === "production" ? REACT_APP_BASE_PATH : "/";
+
+type GlobalProviderProps = {
+  children: React.ReactNode;
 };
+
+const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => (
+  <Suspense fallback>
+    <Router basename={basePath}>
+      <ThemeProvider>
+        <NavigationProvider navigation={navigation}>
+          {children}
+        </NavigationProvider>
+      </ThemeProvider>
+    </Router>
+  </Suspense>
+);
 
 export default GlobalProvider;

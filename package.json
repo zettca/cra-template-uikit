@@ -1,28 +1,23 @@
 {
-  "name": "cra-template-hv-uikit",
-  "version": "0.1.0",
+  "name": "@hitachivantara/cra-template-uikit",
+  "version": "1.0.0",
+  "description": "The Hitachi Vantara UI Kit template for Create React App.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lumada-design/cra-template-uikit.git"
+  },
+  "author": {
+    "name": "Hitachi Vantara UI Kit Team"
+  },
   "keywords": [
     "react",
     "create-react-app",
     "template",
-    "hv-uikit"
+    "typescript",
+    "hv-uikit",
+    "hitachivantara"
   ],
-  "description": "The HV UIKIT template for Create React App.",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dpanda-hv/cra-template-hv-uikit.git"
-  },
   "engines": {
     "node": ">=14"
-  },
-  "files": [
-    "template",
-    "template.json"
-  ],
-  "dependencies": {
-    "shelljs": "^0.8.4"
-  },
-  "scripts": {
-    "start-template": "node ./start-template"
   }
 }

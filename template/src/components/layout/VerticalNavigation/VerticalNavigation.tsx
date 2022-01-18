@@ -1,44 +1,63 @@
 import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { useMediaQuery, useTheme } from "@material-ui/core";
-import { LogOut, User } from "@hv/uikit-react-icons";
+import { ThemeSwitcher, LogOut } from "@hv/uikit-react-icons";
 import {
   HvVerticalNavigation,
+  HvVerticalNavigationTree,
   HvVerticalNavigationActions,
   HvVerticalNavigationAction,
 } from "@hv/uikit-react-core";
-import NavigationContext from "lib/contexts/NavigationContext";
-import { AuthContext } from "lib/contexts/AuthContext";
 
-const VerticalNavigation = () => {
+import { ThemeContext } from "lib/context/ThemeContext";
+import { NavigationContext } from "lib/context/NavigationContext";
+import useStyles from "./styles";
+
+const VerticalNavigation: React.FC = () => {
   const theme = useTheme();
-  const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
-  const { isOpen, toggleOpen } = useContext(NavigationContext);
-  const { logout } = useContext(AuthContext);
+  const classes = useStyles();
+  const history = useHistory();
 
-  if (!isOpen || isMdUp) return null;
+  const isMdDown = useMediaQuery(theme.breakpoints.down("md"));
 
-  return (
-    <HvVerticalNavigation
-      isCollapsable={false}
-      isOpen={isOpen}
-      toggleOpenCallback={toggleOpen}
-    >
-      {!isMdUp && (
+  const { toggleTheme } = useContext(ThemeContext);
+  const { navigation, activePath, isVerticalOpen, setVerticalOpen } =
+    useContext(NavigationContext);
+
+  const handleChange = (
+    event: React.SyntheticEvent,
+    selection: NavigationData
+  ) => {
+    if (selection.path) {
+      history.push(selection.path);
+      setVerticalOpen(false);
+    }
+  };
+
+  return isVerticalOpen && isMdDown ? (
+    <div className={classes.container}>
+      <HvVerticalNavigation classes={{ root: classes.root }}>
+        <HvVerticalNavigationTree
+          data={navigation || []}
+          selected={activePath?.id || ""}
+          onChange={handleChange}
+        />
+
         <HvVerticalNavigationActions>
           <HvVerticalNavigationAction
-            label="Profile"
-            icon={<User />}
-            onClick={() => {}}
+            label="Toggle Theme"
+            icon={<ThemeSwitcher />}
+            onClick={() => toggleTheme()}
           />
           <HvVerticalNavigationAction
             label="Logout"
             icon={<LogOut />}
-            onClick={() => logout()}
+            onClick={() => {}}
           />
         </HvVerticalNavigationActions>
-      )}
-    </HvVerticalNavigation>
-  );
+      </HvVerticalNavigation>
+    </div>
+  ) : null;
 };
 
 export default VerticalNavigation;

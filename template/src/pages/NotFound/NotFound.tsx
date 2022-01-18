@@ -1,29 +1,38 @@
 import React from "react";
-import { HvGrid, HvTypography } from "@hv/uikit-react-core";
+import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import withLayout from "lib/hocs/withLayout";
-import { setTitle } from "lib/utils/setTitle";
-import { NotFoundProps } from "./index";
+import { HvButton, HvEmptyState, HvGrid } from "@hv/uikit-react-core";
+import { Info } from "@hv/uikit-react-icons";
 
-const NotFound: React.FC<NotFoundProps> = () => {
-  const { t } = useTranslation();
+import { Container } from "components/layout";
 
-  setTitle(
-    `${t("pages.notFound.title")} - ${t("components.layout.header.appName")}`
-  );
+const NotFound: React.FC = () => {
+  const { t } = useTranslation("common");
+  const history = useHistory();
 
   return (
-    <HvGrid container>
-      <HvGrid item xl={12}>
-        <HvTypography variant="3xlTitle">
-          404 - {t("pages.notFound.title")}
-        </HvTypography>
-        <HvTypography variant="sTitle">
-          The page you are looking for is not available!
-        </HvTypography>
+    <Container fullScreen>
+      <HvGrid container justifyContent="center" alignItems="center">
+        <HvGrid item xl={12}>
+          <HvEmptyState
+            style={{
+              display: "flex",
+              alignItems: "center",
+              height: `calc(100vh - 44px)`,
+            }}
+            title={t("notFound.title")}
+            message={t("notFound.message")}
+            icon={<Info />}
+            action={
+              <HvButton category="ghost" onClick={() => history.goBack()}>
+                {t("notFound.action")}
+              </HvButton>
+            }
+          />
+        </HvGrid>
       </HvGrid>
-    </HvGrid>
+    </Container>
   );
 };
 
-export default withLayout(NotFound);
+export default NotFound;

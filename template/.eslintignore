@@ -1,7 +1,0 @@
-# Dependency directories
-node_modules
-
-# Dev directories
-build
-config
-coverage

@@ -9,9 +9,18 @@
     "import/no-cycle": "off",
     "react/require-default-props": "off",
     "react/jsx-props-no-spreading": "off",
-    "@typescript-eslint/no-explicit-any": 1,
+    "react/destructuring-assignment": "off",
+    "react/function-component-definition": [
+      "warn",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/ban-types": "off",
-    "@typescript-eslint/no-empty-function": "off"
+    "@typescript-eslint/no-empty-function": "off",
+    "no-restricted-exports": "off"
   }
 }
