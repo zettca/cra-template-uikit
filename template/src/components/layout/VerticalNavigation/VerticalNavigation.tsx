@@ -9,7 +9,6 @@ import {
   HvVerticalNavigationAction,
 } from "@hitachivantara/uikit-react-core";
 
-import { AuthContext } from "lib/context/AuthContext";
 import { ThemeContext } from "lib/context/ThemeContext";
 import { NavigationContext } from "lib/context/NavigationContext";
 import useStyles from "./styles";
@@ -21,7 +20,6 @@ const VerticalNavigation: React.FC = () => {
 
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
 
-  const { isAuthed, logout } = useContext(AuthContext);
   const { toggleTheme } = useContext(ThemeContext);
   const { navigation, activePath, isVerticalOpen, setVerticalOpen } =
     useContext(NavigationContext);
@@ -36,7 +34,7 @@ const VerticalNavigation: React.FC = () => {
     }
   };
 
-  return isAuthed && isVerticalOpen && !isMdUp ? (
+  return isVerticalOpen && !isMdUp ? (
     <div className={classes.container}>
       <HvVerticalNavigation classes={{ root: classes.root }}>
         <HvVerticalNavigationTree
@@ -54,7 +52,7 @@ const VerticalNavigation: React.FC = () => {
           <HvVerticalNavigationAction
             label="Logout"
             icon={<LogOut />}
-            onClick={logout}
+            onClick={() => {}}
           />
         </HvVerticalNavigationActions>
       </HvVerticalNavigation>
