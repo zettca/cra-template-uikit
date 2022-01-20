@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { HvLoading, HvEmptyState, HvLink } from "@hitachivantara/uikit-react-core";
+import {
+  HvLoading,
+  HvEmptyState,
+  HvLink,
+} from "@hitachivantara/uikit-react-core";
 import { Info } from "@hitachivantara/uikit-react-icons";
 import useStyles from "./styles";
 

@@ -1,6 +1,10 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { HvGrid, HvTypography, HvGlobalActions } from "@hitachivantara/uikit-react-core";
+import {
+  HvGrid,
+  HvTypography,
+  HvGlobalActions,
+} from "@hitachivantara/uikit-react-core";
 
 import { Container } from "components/layout";
 
