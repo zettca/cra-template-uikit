@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { HvLoading, HvEmptyState, HvLink } from "@hv/uikit-react-core";
-import { Info } from "@hv/uikit-react-icons";
+import { HvLoading, HvEmptyState, HvLink } from "@hitachivantara/uikit-react-core";
+import { Info } from "@hitachivantara/uikit-react-icons";
 import useStyles from "./styles";
 
 export interface LoadingProps extends React.HTMLAttributes<HTMLDivElement> {

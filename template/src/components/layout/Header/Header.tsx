@@ -1,7 +1,7 @@
 import React, { useContext, MouseEvent } from "react";
 import { useHistory } from "react-router-dom";
 import { useMediaQuery, useTheme } from "@material-ui/core";
-import { LogOut, Menu, ThemeSwitcher } from "@hv/uikit-react-icons";
+import { LogOut, Menu, ThemeSwitcher } from "@hitachivantara/uikit-react-icons";
 import {
   HvHeader,
   HvHeaderBrand,
@@ -9,7 +9,7 @@ import {
   HvHeaderNavigation,
   NavigationItemProp,
   HvButton,
-} from "@hv/uikit-react-core";
+} from "@hitachivantara/uikit-react-core";
 
 import HitachiLogo from "assets/HitachiLogo";
 import { ThemeContext } from "lib/context/ThemeContext";

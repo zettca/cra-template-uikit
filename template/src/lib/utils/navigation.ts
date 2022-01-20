@@ -1,3 +1,5 @@
+import pages from "lib/navigation";
+
 export const getActivePath = (
   pathname: string,
   navigation: NavigationData[] | undefined
@@ -23,4 +25,8 @@ export const getActivePath = (
   }
 
   return activePath;
+};
+
+export const isTopLevelPage = (pathname: string): boolean => {
+  return !!pages.find((item) => item.path === pathname);
 };

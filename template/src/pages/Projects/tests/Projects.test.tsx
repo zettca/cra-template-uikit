@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import GlobalProvider from "lib/providers/GlobalProvider";
-import Projects from "./Projects";
+import Projects from "../Projects";
 
 const renderWithProvider = () =>
   render(

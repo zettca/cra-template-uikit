@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { HvProvider } from "@hv/uikit-react-core";
+import { HvProvider } from "@hitachivantara/uikit-react-core";
 
 import useTheme from "lib/hooks/useTheme";
 

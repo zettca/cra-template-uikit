@@ -1,13 +1,19 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { HvButton, HvEmptyState, HvGrid } from "@hv/uikit-react-core";
-import { Info } from "@hv/uikit-react-icons";
+import {
+  HvButton,
+  HvEmptyState,
+  HvGrid,
+} from "@hitachivantara/uikit-react-core";
+import { Info } from "@hitachivantara/uikit-react-icons";
 
 import { Container } from "components/layout";
+import useStyles from "./styles";
 
 const NotFound: React.FC = () => {
   const { t } = useTranslation("common");
+  const classes = useStyles();
   const history = useHistory();
 
   return (
@@ -15,11 +21,7 @@ const NotFound: React.FC = () => {
       <HvGrid container justifyContent="center" alignItems="center">
         <HvGrid item xl={12}>
           <HvEmptyState
-            style={{
-              display: "flex",
-              alignItems: "center",
-              height: `calc(100vh - 44px)`,
-            }}
+            className={classes.empty}
             title={t("notFound.title")}
             message={t("notFound.message")}
             icon={<Info />}

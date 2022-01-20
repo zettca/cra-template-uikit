@@ -1,8 +1,10 @@
 import React, { Suspense } from "react";
+import { useLocation } from "react-router-dom";
 import clsx from "clsx";
-import { HvContainer } from "@hv/uikit-react-core";
+import { HvContainer } from "@hitachivantara/uikit-react-core";
 
 import Loading, { LoadingProps } from "components/layout/Loading";
+import { isTopLevelPage } from "lib/utils/navigation";
 import useStyles from "./styles";
 
 interface ContainerProps {
@@ -21,17 +23,18 @@ const Container: React.FC<ContainerProps> = ({
   loadingProps,
 }) => {
   const classes = useStyles();
+  const { pathname } = useLocation();
+  const hasSecondLevel = !isTopLevelPage(pathname);
 
   return (
-    <div
-      className={clsx(className, classes.content, {
-        [classes.fullHeight]: fullScreen,
-      })}
-    >
+    <div className={clsx(className, classes.content)}>
       <Suspense fallback={<Loading {...loadingProps} />}>
         <HvContainer
           maxWidth={maxWidth}
-          className={classes.container}
+          className={clsx(classes.container, {
+            [classes.fullHeight]: fullScreen,
+            [classes.hasSecondLevel]: hasSecondLevel,
+          })}
           {...{ component: "main" }}
         >
           {children}
